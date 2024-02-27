@@ -3,6 +3,7 @@
 namespace App;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class SpamChecker
 {
