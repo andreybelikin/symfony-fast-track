@@ -27,3 +27,9 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+/node_modules/
+/public/
+/npm-debug.log
+# used later by Cordova
+/app/

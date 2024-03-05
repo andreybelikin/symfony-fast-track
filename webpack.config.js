@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -8,9 +9,18 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     // directory where compiled assets will be stored
-    .setOutputPath('public/build/')
+    .setOutputPath('public/')
+    .setPublicPath('/')
+    .cleanupOutputBeforeBuild()
+    .addEntry('app', './src/app.js')
+    .enablePreactPreset()
+    .enableSassLoader()
+    .enableSingleRuntimeChunk()
+    .addPlugin(new HtmlWebpackPlugin({ template: 'src/index.ejs', alwaysWriteToDisk: true }))
+    .addPlugin(new webpack.DefinePlugin({
+        'ENV_API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT),
+    }))
     // public path used by the web server to access the output path
-    .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
 
